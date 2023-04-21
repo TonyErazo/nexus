@@ -187,3 +187,9 @@ elif menu_bar == "Check Server Status":
             st.error(incidents_status)
         else:
             st.success(incidents_status)
+
+        df = pd.DataFrame(
+            np.random.randn(500, 2) / [500, 300] + [34.02, -118.4],
+            columns=['lat', 'lon'])
+
+        st.map(df, zoom=3)
