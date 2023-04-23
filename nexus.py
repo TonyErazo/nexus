@@ -133,12 +133,13 @@ if menu_bar == "Search Summoner":
                 )
 
                 damage_data = df[['totalDamageDealt']]
-                st.write(damage_data)
+
                 champion_index = df[['champion']]
                 st.write(champion_index)
-                chart_df = pd.DataFrame(data=damage_data, index=champion_index)
-                st.write(chart_df)
-                st.bar_chart(chart_df)
+
+
+                st.bar_chart(data = damage_data)
+
         except ApiError as err:
             if err.response.status_code == 429:
                 st.error('We should retry in {} seconds.'.format(err.response.headers['Retry-After'] +

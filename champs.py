@@ -247,6 +247,8 @@ def getChampionNameById(id):
         return "Zyra"
     elif id == 145:
         return "Kai'sa"
+    elif id == 147:
+        return "Seraphine"
     elif id == 150:
         return "Gnar"
     elif id == 154:
@@ -259,16 +261,22 @@ def getChampionNameById(id):
         return "Taliyah"
     elif id == 164:
         return "Camille"
+    elif id == 200:#Bel'Veth
+        return "Camille"
     elif id == 201:
         return "Braum"
     elif id == 202:
         return "Jhin"
     elif id == 203:
         return "Kindred"
+    elif id == 221:
+        return "Zeri"
     elif id == 222:
         return "Jinx"
     elif id == 223:
         return "TahmKench"
+    elif id == 234:
+        return "Viego"
     elif id == 235:
         return "Senna"
     elif id == 236:
@@ -291,6 +299,8 @@ def getChampionNameById(id):
         return "Azir"
     elif id == 350:
         return "Yuumi"
+    elif id == 360:
+        return "Samira"
     elif id == 412:
         return "Thresh"
     elif id == 420:
@@ -315,13 +325,27 @@ def getChampionNameById(id):
         return "Neeko"
     elif id == 523:
         return "Aphelios"
+    elif id == 526:#Rell
+        return "Rell"
     elif id == 555:
         return "Pyke"
     elif id == 711:
         return "Vex"
+    elif id == 777:
+        return "Yone"
     elif id == 875:
         return "Sett"
     elif id == 876:
         return "Lillia"
+    elif id == 887:
+        return "Gwen"
+    elif id == 888:
+        return "Renata"
+    elif id == 895:#Nilah
+        return "Gwen"
+    elif id == 897:#Ksante
+        return "Gwen"
+    elif id == 902:#milio
+        return "Gwen"
     else:
-        return "None"
+        return "Gwen"
