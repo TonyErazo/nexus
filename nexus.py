@@ -7,6 +7,8 @@ import json
 import plotly.express as px
 import champs
 import challenger
+import smtplib
+from email.mime.multipart import MIMEMultipart
 
 BASE_URL = 'https://d1fodqbtqsx6d3.cloudfront.net'
 ICON_URL = 'http://ddragon.leagueoflegends.com/cdn/10.15.1/img/profileicon/'
@@ -23,7 +25,7 @@ region = "na1"
 watcher = LolWatcher(api_key)
 region = "na1"
 
-menu_bar = st.sidebar.selectbox("Menu", ("Search Summoner", "Top Challenger Players", "Check Server Status"))
+menu_bar = st.sidebar.selectbox("Menu", ("Search Summoner", "Top Challenger Players", "Check Server Status", "Contact Us"))
 
 
 # Look for a player in team data, if found then gives it his team result and return
@@ -156,13 +158,6 @@ elif menu_bar == "Top Challenger Players":
     player_name = 'C9 Destiny'
     player_games = challenger.get_player_matches(player_name)
 
-    # Group the match history by champion to see which ones were played the most
-    # Check plotly doc here: https://plotly.com/python/pie-charts/
-    challenger.display_match_history(player_name, player_games)
-
-    matches = challenger.get_player_matches(player_name)
-
-    # go look into each match if the player was present
     challenger.display_match_history(player_name, player_games)
 
 
@@ -170,27 +165,59 @@ elif menu_bar == "Check Server Status":
     st.title('Server Status')
     url = "https://na1.api.riotgames.com/lol/status/v4/platform-data?api_key=" + api_key
     r = requests.get(url, verify=False)
-    maintenance_json = json.loads(r.text)['maintenances'][0]['updates'][0]['translations'][0]['content']
+
+    maintenance_json = json.loads(r.text)
+
     incident_json = json.loads(r.text)['incidents'][0]['updates'][0]['translations'][0]['content']
 
-    incidents_status = "there are no incidents currently" if not incident_json else incident_json
+    #incidents_status = "there are no incidents currently" if not incident_json else incident_json
 
     if r:
-        maintenance_status = "No maintenances currently" if not maintenance_json else maintenance_json
-        incidents_status = "there are no incidents currently" if not incident_json else incident_json
+        #maintenance_status = "No maintenances currently" if not maintenance_json else maintenance_json
+        #incidents_status = "there are no incidents currently" if not incident_json else incident_json
 
-        st.info("Region: " + r.json().get("name"))
-        if "A new update is available" or "No maintenances" in maintenance_status:
+        if not 'maintenances' in maintenance_json or len(maintenance_json['maintenances']) == 0:
+            maintenance_status = "No maintenances currently"
             st.success(maintenance_status)
         else:
+            maintenance_json = json.loads(r.text)['maintenances'][0]['updates'][0]['translations'][0]['content']
+            maintenance_status = maintenance_json
             st.error(maintenance_status)
-        if "there are no incidents currently" not in incidents_status:
-            st.error(incidents_status)
-        else:
+        if not 'incidents' in incident_json or len(incident_json['incidents']) == 0:
+            incidents_status = "there are no incidents currently"
             st.success(incidents_status)
+        else:
+            incidents_status = incident_json
+            st.error(incidents_status)
+        st.info("Region: " + r.json().get("name"))
 
         df = pd.DataFrame(
             np.random.randn(500, 2) / [500, 300] + [34.02, -118.4],
             columns=['lat', 'lon'])
 
-        st.map(df, zoom=3)
+        st.subheader("Map Zoom")
+        zoom_val = st.slider("Zoom value", min_value = 1, max_value = 7, value = 3)
+        st.map(df,zoom=zoom_val)
+elif menu_bar == "Contact Us":
+    st.header("Contact Form")
+    contact_email = st.text_input("Enter an e-mail we can reach you at")
+    age = st.number_input("Please enter your age")
+    description = st.text_area("Please describe what you would like to contact us about")
+    date_occurred = st.date_input("Please select the date this occurred")
+    category = st.radio("Select the contact category", ("Contact", "Bug Report", "Affiliation"))
+    submit_btn = st.button("Submit")
+
+    if submit_btn:
+        #msg = MIMEMultipart()
+        #msg['Subject'] = str(category) + " date: " + str(date_occurred)
+        #dev_email = "admin@nexus.io"
+        #msg['Subject'] = 'The contents of %s' % description
+        #msg['From'] = contact_email
+        #msg['To'] = ",".join(dev_email)
+
+        # Send the message via our own SMTP server, but don't include the
+        # envelope header.
+        #s = smtplib.SMTP('localhost')
+        #s.sendmail(contact_email, [dev_email], msg.as_string())
+        #s.quit()
+        st.success("Email sent!")
