@@ -1,17 +1,26 @@
 # nexus
-Riot API analytic software
+### Riot API analytic software
 
-Available Scripts
+## Available Scripts
 
+
+### Starting the application
 In the project directory, you can run:
-npm start
 
+```
+npm start
+```
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in your browser.
 
 The page will reload when you make changes.
 You may also see any lint errors in the console.
+
+### Test mode
+
+```
 npm test
+```
 
 Launches the test runner in the interactive watch mode.
 See the section about running tests for more information.
@@ -24,9 +33,20 @@ The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 See the section about deployment for more information.
-npm run eject
 
-Note: this is a one-way operation. Once you eject, you can't go back!
+### Eject
+
+```
+npm run eject
+```
+
+> **WARNING!**
+> Note: this is a one-way operation. Once you eject, you can't go back!
+
+> **Warning**
+>
+> This is a warning
+
 
 If you aren't satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
 
