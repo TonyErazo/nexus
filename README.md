@@ -40,7 +40,7 @@ See the section about deployment for more information.
 npm run eject
 ```
 
-> **WARNING!**
+> [WARNING!]
 > Note: this is a one-way operation. Once you eject, you can't go back!
 
 > **Warning**
