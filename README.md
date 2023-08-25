@@ -3,6 +3,9 @@
 
 ## Available Scripts
 
+Nexus is a data represantation program using the Riot API
+
+![Summoner Look Up]([http://url/to/img.png](https://github.com/TonyEra/nexus/blob/main/summoner_lookup.png))
 
 ### Starting the application
 In the project directory, you can run:
