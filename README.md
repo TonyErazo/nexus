@@ -5,7 +5,16 @@
 
 Nexus is a data represantation program using the Riot API
 
-![Summoner Look Up]([http://url/to/img.png](https://github.com/TonyEra/nexus/blob/main/summoner_lookup.png))
+It gives you the ability to search summoners on the north america region and look up their statistical data
+![Summoner Look Up](https://github.com/TonyEra/nexus/blob/main/summoner_lookup.png?raw=true)
+
+Graphical Representation of the top players
+
+![Summoner Look Up](https://github.com/TonyEra/nexus/blob/main/performance_chart.png?raw=true)
+
+Individual Game Data
+
+![Summoner Look Up](https://github.com/TonyEra/nexus/blob/main/game_stats.png?raw=true)
 
 ### Starting the application
 In the project directory, you can run:
